@@ -1,4 +1,4 @@
-class Card:
-    def __init__(self, rank, suit):
-        self.rank = rank
-        self.suit = suit
+class Hand:
+    def __init__(self, name):
+        self.name = name
+        self.cards = []    # пустая рука
