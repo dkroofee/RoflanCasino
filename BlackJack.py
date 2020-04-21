@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 class Hand:
     def __init__(self, name):
         self.name = name
@@ -5,7 +8,6 @@ class Hand:
 
     def add_card(self, card):
         self.cards.append(card)    # добавить карту в руку
-
 
     def get_value(self):   # начисление очков
         result = 0
@@ -18,16 +20,9 @@ class Hand:
             result += aces * 10
         return result
 
-
     def __str__(self):
         text = "Рука %sа:\n" % self.name
         for card in self.cards:
             text += str(card) + " "
         text += "\nКоличество очков: " + str(self.get_value())
         return text
-
-
-Card1 = "------\n|%n    |\n| %s |\n|    %n|\n------"
-Card2 = "------  ------\n|    |  |    |\n| %s |  | %s |\n|    |  |    |\n------  ------"
-Card3 = "------  ------  ------\n|    |  |    |  |    |\n| %s |  | %s |  | %s |\n|    |  |    |  |    |\n------  ------  ------"
-Card4 = "------  ------  ------  ------\n|    |  |    |  |    |  |    |\n| %s |  | %s |  | %s |  | %s |\n|    |  |    |  |    |  |    |\n------  ------  ------  ------"
