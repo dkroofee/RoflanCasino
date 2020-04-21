@@ -1,9 +1,3 @@
-'''     Card1 = "------\n|%n    |\n| %s |\n|    %n|\n------"
-        Card2 = "------  ------\n|    |  |    |\n| %s |  | %s |\n|    |  |    |\n------  ------"
-        Card3 = "------  ------  ------\n|    |  |    |  |    |\n| %s |  | %s |  | %s |\n|    |  |    |  |    |\n------  ------  ------"
-        Card4 = "------  ------  ------  ------\n|    |  |    |  |    |  |    |\n| %s |  | %s |  | %s |  | %s |\n|    |  |    |  |    |  |    |\n------  ------  ------  ------"   '''
-
-
 from random import shuffle
 
 
@@ -61,3 +55,45 @@ class Deck:
 
     def deal_card(self):   # выдать карту
         return self.cards.pop()
+
+
+def new_game():
+    d = Deck()
+    player_hand = Hand("Игрок")
+    dealer_hand = Hand("Дилер")
+    player_hand.add_card(d.deal_card())   # сдаем две карты игроку
+    player_hand.add_card(d.deal_card())
+    dealer_hand.add_card(d.deal_card())   # сдаем одну карту дилеру
+    print(dealer_hand)
+    print("="*20)
+    print(player_hand)
+    in_game = True   # Флаг проверки необходимости продолжать игру
+    while player_hand.get_value() < 21:
+        ans = input("Взять ещё или оставить?\nНапишите(+/-): ")
+        if ans == "+":
+            player_hand.add_card(d.deal_card())
+            print(player_hand)
+            if player_hand.get_value() > 21:   # Если у игрока перебор - дилеру нет смысла набирать карты
+                print("Перебор - вы проиграли ¯\_(ツ)_/¯")
+                in_game = False
+        elif ans == "-":
+            print("Мне хватит!")
+            break
+        else:
+            print("Я вас не понимаю (╯°□°）╯︵ ┻━┻")
+    print("=" * 20)
+    if in_game:
+        while dealer_hand.get_value() < 17:   # Дилер обязан набирать карты пока его счет меньше 17
+            dealer_hand.add_card(d.deal_card())
+            print(dealer_hand)
+            if dealer_hand.get_value() > 21:   # Если у дилера перебор - игрок выйграл
+                print("У дилера перебор - вы выйграли!")
+                in_game = False
+    if in_game:
+        if player_hand.get_value() > dealer_hand.get_value():   # Ни у кого не было перебора - сравниваем счет
+            print("Ты выйграл!")
+        elif player_hand.get_value() == dealer_hand.get_value():   # Если счет равный, то игроку возвращаются фишки
+            print("Ничья, нордиксы возвращаются на баланс")
+        else:
+            print("Дилер выйграл ¯\_(ツ)_/¯")
+    return
