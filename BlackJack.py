@@ -97,3 +97,6 @@ def new_game():
         else:
             print("Дилер выйграл ¯\_(ツ)_/¯")
     return
+
+
+new_game()
