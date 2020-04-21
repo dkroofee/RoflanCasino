@@ -55,3 +55,15 @@ class Deck:
 
     def deal_card(self):   # выдать карту
         return self.cards.pop()
+
+
+def new_game():
+    d = Deck()
+    player_hand = Hand("Игрок")
+    dealer_hand = Hand("Дилер")
+    player_hand.add_card(d.deal_card())   # сдаем две карты игроку
+    player_hand.add_card(d.deal_card())
+    dealer_hand.add_card(d.deal_card())   # сдаем одну карту дилеру
+    print(dealer_hand)
+    print("="*20)
+    print(player_hand)
