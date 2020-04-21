@@ -19,3 +19,6 @@ class Deck:
         suits = "♥♦♣♠"   # масти
         self.cards = [Card(r, s) for r in ranks for s in suits] * 4   # создает 4 колоды из 52 карт
         shuffle(self.cards)   # перетасовываем колоды
+
+    def deal_card(self):   # выдать карту
+        return self.cards.pop()
