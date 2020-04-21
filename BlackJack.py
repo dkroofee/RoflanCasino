@@ -11,3 +11,6 @@ class Card:
 
     def get_rank(self):
         return self.rank
+
+    def __str__(self):
+        return "%s%s" % (self.rank, self.suit)
