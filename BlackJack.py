@@ -14,3 +14,14 @@ class Card:
 
     def __str__(self):
         return "%s%s" % (self.rank, self.suit)
+
+
+class Deck:
+    def __init__(self):
+        ranks = "23456789TJQKA"   # ранги
+        suits = "♥♦♣♠"   # масти
+        self.cards = [Card(r, s) for r in ranks for s in suits] * 4   # создает 4 колоды из 52 карт
+        shuffle(self.cards)   # перетасовываем колоды
+
+    def deal_card(self):   # выдать карту
+        return self.cards.pop()
