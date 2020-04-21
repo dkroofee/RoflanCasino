@@ -11,3 +11,11 @@ class Card:
 
     def get_rank(self):
         return self.rank
+
+
+class Deck:
+    def __init__(self):
+        ranks = "23456789TJQKA"   # ранги
+        suits = "♥♦♣♠"   # масти
+        self.cards = [Card(r, s) for r in ranks for s in suits] * 4   # создает 4 колоды из 52 карт
+        shuffle(self.cards)   # перетасовываем колоды
